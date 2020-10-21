@@ -26,11 +26,13 @@ class Pipero:
 
     def save_data(self):
         names = [os.path.splitext(os.path.split(x.name)[-1])[0] for x in self.file_list]
-        frames = [x.rename_axis('Index').reset_index() for x in self.extract_frames]
+        frames = [x.rename_axis("Index").reset_index() for x in self.extract_frames]
         out = pd.concat(frames, axis=1, keys=names)
+
         out.to_csv(
             os.path.join(
                 os.path.dirname(self.file_list[0].name),
                 f"extracted_output_{self.TODAY}.csv",
-            ), index=False
+            ),
+            index=False,
         )

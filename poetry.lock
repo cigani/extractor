@@ -1,4 +1,12 @@
 [[package]]
+category = "main"
+description = ""
+name = "aihelper"
+optional = false
+python-versions = ">=3.5,<4.0"
+version = "0.2.6"
+
+[[package]]
 category = "dev"
 description = "A small Python module for determining appropriate platform-specific dirs, e.g. a \"user data dir\"."
 name = "appdirs"
@@ -136,11 +144,15 @@ python-versions = "*"
 version = "3.7.4.3"
 
 [metadata]
-content-hash = "daed685c22b11b07a9ccb8f6cf00fdaddea189f583542723bb3eb27a35534741"
+content-hash = "05030e367ad6fb464dd3ecead13807ef6f9400e26895dff932304fcca98696df"
 lock-version = "1.0"
 python-versions = "^3.8"
 
 [metadata.files]
+aihelper = [
+    {file = "aihelper-0.2.6-py3-none-any.whl", hash = "sha256:870a275f5f3fdc7bc0c5cf135b67238c67adb9d328686d40a9e96394fe777124"},
+    {file = "aihelper-0.2.6.tar.gz", hash = "sha256:f4cb1dc273c3098c120940399144e07e7bdbc9d32e87579b8b947719ea916281"},
+]
 appdirs = [
     {file = "appdirs-1.4.4-py2.py3-none-any.whl", hash = "sha256:a841dacd6b99318a741b166adb07e19ee71a274450e68237b4650ca1055ab128"},
     {file = "appdirs-1.4.4.tar.gz", hash = "sha256:7d5d0167b2b1ba821647616af46a749d1c653740dd0d2415100fe26e27afdf41"},

@@ -1,4 +1,4 @@
-from extractor import __version__
+from aiextractor import __version__
 
 
 def test_version():
