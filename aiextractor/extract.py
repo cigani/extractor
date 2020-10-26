@@ -21,6 +21,8 @@ class Pipero:
 
     @delimiter.setter
     def delimiter(self, value):
+        if value:
+            value = value.strip()
         if not value:
             value = r"\s+"
         else:
