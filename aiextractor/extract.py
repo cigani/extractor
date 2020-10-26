@@ -6,16 +6,41 @@ from datetime import datetime
 class Pipero:
     TODAY = datetime.today().date()
 
-    def __init__(self, file_list):
+    def __init__(self, file_list, delimiter=None, start_row=None):
         self.file_list = file_list
         self.frame = pd.DataFrame()
         self.frames = []
         self.extract_frames = []
         self.path = []
+        self.delimiter=delimiter
+        self.start_row = start_row
+
+    @property
+    def delimiter(self):
+        return self._delimiter
+
+    @delimiter.setter
+    def delimiter(self, value):
+        if not value:
+            value = r"\s+"
+        else:
+            value = value
+        self._delimiter = value
+
+    @property
+    def start_row(self):
+        return self._start_row
+
+    @start_row.setter
+    def start_row(self, value):
+        if value:
+            value = int(value)
+        self._start_row = value
+
 
     def extract_headers(self):
         for file in self.file_list:
-            self.frame = pd.read_csv(file, delimiter=r"\s+")
+            self.frame = pd.read_csv(file, delimiter=self.delimiter, skiprows=self.start_row)
             self.frames.append(self.frame)
         return self.frame.columns
 
@@ -36,3 +61,4 @@ class Pipero:
             ),
             index=False,
         )
+

@@ -1,6 +1,6 @@
 from tkinter import *
 
-from aihelper import Browse, OkButton
+from aihelper import Browse, OkButton, EntryBar
 
 from aiextractor import Pipero
 
@@ -16,15 +16,25 @@ class Aiex:
 
     def looper(self):
         self.files = Browse(self.root, type="file", title="Select your files")
-        self.button = OkButton(self.root, function=self.listboxer)
+        self.entrybar = EntryBar(self.root, picks=['Delimiter', 'Start Row'])
+        self.button = OkButton(parent=self.root, function=self.listboxer)
         self.root.mainloop()
 
-    def load_data(self):
-        self.data = Pipero(self.files.get())
+    def load_data(self, delimiter, start_row):
+        self.data = Pipero(self.files.get(), delimiter=delimiter, start_row=start_row)
         self.headers = self.data.extract_headers()
 
     def listboxer(self):
-        self.load_data()
+        try:
+            delimiter = list(self.entrybar.get('Delimiter'))[0]
+        except IndexError:
+            delimiter = None
+        try:
+            start_row = list(self.entrybar.get('Start Row'))[0]
+        except IndexError:
+            start_row = None
+
+        self.load_data(delimiter, start_row)
         new_window = Toplevel(self.root)
         new_window.grab_set()
         self.listbox = Listbox(
